@@ -1,0 +1,48 @@
+@model (DateTime? PublishedDate, DateTime? UpdatedDate, List<(DateTime Date, string Description)>? ChangeHistory)
+
+<div class="page-metadata">
+    <div class="govuk-width-container">
+        <h2 class="govuk-heading-s page-metadata__heading">Page information</h2>
+        
+        <dl class="page-metadata__list">
+            @if (Model.PublishedDate.HasValue)
+            {
+                <div class="page-metadata__item">
+                    <dt class="page-metadata__term">Published</dt>
+                    <dd class="page-metadata__detail">@Model.PublishedDate.Value.ToString("d MMMM yyyy")</dd>
+                </div>
+            }
+            
+            @if (Model.UpdatedDate.HasValue && Model.UpdatedDate != Model.PublishedDate)
+            {
+                <div class="page-metadata__item">
+                    <dt class="page-metadata__term">Last updated</dt>
+                    <dd class="page-metadata__detail">@Model.UpdatedDate.Value.ToString("d MMMM yyyy")</dd>
+                </div>
+            }
+        </dl>
+        
+        @if (Model.ChangeHistory != null && Model.ChangeHistory.Any())
+        {
+            <details class="page-metadata__history">
+                <summary class="page-metadata__history-summary">
+                    <span>View change history</span>
+                </summary>
+                <div class="page-metadata__history-content">
+                    <ol class="page-metadata__history-list">
+                        @foreach (var change in Model.ChangeHistory.OrderByDescending(c => c.Date))
+                        {
+                            <li class="page-metadata__history-item">
+                                <time datetime="@change.Date.ToString("yyyy-MM-dd")">
+                                    @change.Date.ToString("d MMMM yyyy")
+                                </time>
+                                <p>@change.Description</p>
+                            </li>
+                        }
+                    </ol>
+                </div>
+            </details>
+        }
+    </div>
+</div>
+

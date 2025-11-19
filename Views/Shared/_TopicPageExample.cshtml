@@ -1,0 +1,64 @@
+@* 
+    Example topic/browse page template
+    
+    To use this template structure:
+    1. Set Layout = "_TopicPage" in your view
+    2. Add your main heading and description in the body
+    3. Use the MostViewed and Topics sections for additional content
+*@
+
+@* 
+    Example view:
+    
+    @{
+        ViewData["Title"] = "Topic Name";
+        Layout = "_TopicPage";
+    }
+
+    @section Breadcrumbs {
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Topic Name</li>
+    }
+
+    <h1 class="govuk-heading-xl">Topic Name</h1>
+    
+    <p class="govuk-body-l">
+        Brief description of the topic area and what it covers.
+    </p>
+
+    @section MostViewed {
+        <li>
+            <a href="/most-viewed-item" class="govuk-link govuk-link--no-visited-state">Most viewed item title</a>
+        </li>
+        <li>
+            <a href="/another-item" class="govuk-link govuk-link--no-visited-state">Another popular item</a>
+        </li>
+    }
+
+    @section Topics {
+        <div class="topic-item">
+            <h3 class="govuk-heading-m">
+                <a href="/topic-section" class="govuk-link">Topic section title</a>
+            </h3>
+            <p>Brief description of what this topic section covers</p>
+            <ul>
+                <li><a href="/topic-link-1" class="govuk-link">Topic link 1</a></li>
+                <li><a href="/topic-link-2" class="govuk-link">Topic link 2</a></li>
+            </ul>
+        </div>
+        
+        <div class="topic-item">
+            <h3 class="govuk-heading-m">
+                <a href="/another-section" class="govuk-link">Another section</a>
+            </h3>
+            <p>Description of this section</p>
+            <ul>
+                <li><a href="/section-link-1" class="govuk-link">Section link 1</a></li>
+            </ul>
+        </div>
+    }
+
+*@
+

@@ -1,0 +1,98 @@
+@{
+    ViewData["Title"] = "About this service";
+    Layout = "_ContentPage";
+}
+
+@section Breadcrumbs {
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item" aria-current="page">About this service</li>
+}
+
+@section PageHeader {
+    <h1 id="page-heading" class="govuk-heading-xl">About this product</h1>
+
+    <p class="govuk-body-l">
+        The Service Manual brings together standards, guidance, patterns and resources from across DfE Digital, Data and Technology.
+    </p>
+}
+
+@section Contents {
+    <li class="dfe-contents-list__list-item dfe-contents-list__list-item--dashed">
+        <span class="dfe-contents-list__list-item-dash" aria-hidden="true"></span>
+        <a class="dfe-contents-list__link govuk-link" href="#what-we-do">What we do</a>
+    </li>
+}
+
+
+
+<h2 id="what-we-do" class="govuk-heading-l">How it can help you</h2>
+
+<p class="govuk-body">
+    The Service Manual helps teams in the Department for Education design, build, and run consistent, accessible, user-centred digital services. It provides a single place to find all the standards, guidance, and best practices needed to deliver high-quality services.
+</p>
+
+<p class="govuk-body">
+    The manual makes it easier for teams to:
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+    <li>find and understand the standards they need to meet</li>
+    <li>access guidance and best practices from across DfE</li>
+    <li>discover reusable patterns and components</li>
+    <li>learn from other teams' experiences</li>
+    <li>stay up to date with changes and improvements</li>
+</ul>
+
+
+<h3 class="govuk-heading-m">Share feedback</h3>
+
+<p class="govuk-body">
+    Have suggestions for improving the Service Manual? Found something that's unclear or missing? We want to hear from you.
+</p>
+
+<p class="govuk-body">
+    You can provide feedback through:
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+    <li>the feedback form at the bottom of every page</li>
+    <li>email <a href="mailto:service-manual@education.gov.uk">service-manual@education.gov.uk</a></li>
+    <li>contact your <a href="/professions">Head of Profession</a></li>
+</ul>
+
+<h3 class="govuk-heading-m">Contribute content</h3>
+
+<p class="govuk-body">
+    If you have guidance, patterns, or resources that would benefit other teams, we'd love to include them. Get in touch to discuss how your content could be featured in the Service Manual.
+</p>
+
+<h3 class="govuk-heading-m">Join discussions</h3>
+
+<p class="govuk-body">
+    Connect with other teams working on similar challenges. Share your experiences, learn from others, and help shape the future of digital services in DfE.
+</p>
+
+@section Sidebar {
+    <div class="dfe-contextual-sidebar govuk-!-display-none-print">
+        <div class="dfe-related-navigation govuk-!-display-none-print">
+            <h2 id="related-nav-related_items" class="dfe-related-navigation__main-heading">Related content</h2>
+            <nav class="dfe-related-navigation__nav-section" aria-labelledby="related-nav-related_items">
+                <ul class="dfe-related-navigation__link-list">
+                    <li class="dfe-related-navigation__link">
+                        <a class="govuk-link dfe-related-navigation__section-link dfe-related-navigation__section-link--sidebar" href="/roadmap">Roadmap</a>
+                    </li>
+                    <li class="dfe-related-navigation__link">
+                        <a class="govuk-link dfe-related-navigation__section-link dfe-related-navigation__section-link--sidebar" href="https://www.gov.uk/service-manual" target="_blank" rel="noopener noreferrer">GOVUK Service Manual</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+}
+
+@section Share {
+    @await Html.PartialAsync("_ShareSidebar")
+}
+

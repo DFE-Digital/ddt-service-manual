@@ -1,0 +1,29 @@
+@model List<(string Title, string Description, string Url, string FileType)>
+
+@if (Model != null && Model.Any())
+{
+    <div class="download-artifacts-panel">
+        <h2 class="govuk-heading-m">Downloads</h2>
+        <p class="govuk-body">Supporting resources for this page</p>
+        <div class="download-artifacts-grid">
+            @foreach (var artifact in Model)
+            {
+                <div class="download-artifact-card">
+                    <a href="@artifact.Url" class="download-artifact-link" download>
+                        <div class="download-artifact-header">
+                            <svg class="download-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                <polyline points="7 10 12 15 17 10"></polyline>
+                                <line x1="12" y1="15" x2="12" y2="3"></line>
+                            </svg>
+                            <span class="download-artifact-type">@artifact.FileType</span>
+                        </div>
+                        <h3 class="download-artifact-title">@artifact.Title</h3>
+                        <p class="download-artifact-description">@artifact.Description</p>
+                    </a>
+                </div>
+            }
+        </div>
+    </div>
+}
+

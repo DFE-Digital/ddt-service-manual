@@ -1,0 +1,1903 @@
+/* DfE Service Manual - Modern Accessible Design */
+/* Using GOV.UK blue with modern, accessible design patterns */
+
+:root {
+    --govuk-blue: #1d70b8;
+    --govuk-blue-dark: #003078;
+    --govuk-blue-light: #5694ca;
+    --govuk-green: #00703c;
+    --govuk-red: #d4351c;
+    --govuk-orange: #f47738;
+    --govuk-purple: #4c2c92;
+    --govuk-pink: #d53880;
+    --text-primary: #0b0c0c;
+    --text-secondary: #505a5f;
+    --text-tertiary: #626a6e;
+    --bg-main: #ffffff;
+    --bg-subtle: #f3f2f1;
+    --bg-card: #ffffff;
+    --border-light: #b1b4b6;
+    --border-mid: #929191;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.15);
+    --shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Modern typography with accessibility */
+body {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-primary);
+    background-color: var(--bg-subtle);
+}
+
+.govuk-main-wrapper {
+    padding: 0 0 60px 0;
+    background-color: var(--bg-main);
+}
+
+/* Hero masthead - Clean GOV.UK blue */
+.page-masthead {
+    background: #1d70b8;
+    color: #ffffff;
+    padding: 0 0 80px;
+    position: relative;
+}
+
+.page-masthead .govuk-width-container {
+    position: relative;
+}
+
+.masthead-category {
+    margin-bottom: 24px;
+}
+
+.masthead-category .govuk-tag {
+    background: #003078;
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 8px 20px;
+    border-radius: 100px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.masthead-title {
+    color: #ffffff;
+    font-size: 56px;
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+.masthead-summary {
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1.5;
+    margin-bottom: 32px;
+    opacity: 0.95;
+    max-width: 800px;
+}
+
+.masthead-meta {
+    color: #ffffff;
+    opacity: 0.85;
+    font-size: 16px;
+}
+
+/* Masthead breadcrumbs - Styled for dark background */
+.masthead-breadcrumbs {
+    padding: 16px 0 24px 0;
+}
+
+.masthead-breadcrumbs__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.masthead-breadcrumbs__item {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.masthead-breadcrumbs__item:not(:last-child)::after {
+    content: '›';
+    margin: 0 12px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 18px;
+}
+
+.masthead-breadcrumbs__link {
+    color: #ffffff;
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.5);
+}
+
+.masthead-breadcrumbs__link:hover {
+    text-decoration-color: #ffffff;
+    text-decoration-thickness: 2px;
+}
+
+.masthead-breadcrumbs__link:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+    text-decoration: none;
+}
+
+.masthead-breadcrumbs__current {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Content wrapper - Card that lifts above masthead */
+.content-wrapper {
+    background: #ffffff;
+    margin: -40px 0 0 0;
+    position: relative;
+    z-index: 2;
+    padding: 60px 0;
+}
+
+/* Metadata panel - Clean information */
+.metadata-panel {
+    background: var(--bg-subtle);
+    border: 2px solid var(--border-light);
+    border-left: 5px solid var(--govuk-blue);
+    padding: 32px;
+    margin: 0 0 48px 0;
+}
+
+.metadata-panel h3 {
+    margin: 0 0 20px 0;
+    font-size: 19px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+}
+
+.metadata-panel ul {
+    margin: 0;
+}
+
+.metadata-item {
+    margin-bottom: 16px;
+    font-size: 19px;
+    color: var(--text-primary);
+}
+
+.metadata-item:last-child {
+    margin-bottom: 0;
+}
+
+.metadata-item strong {
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.metadata-item a {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+}
+
+.metadata-item a:hover {
+    color: var(--govuk-blue-dark);
+    text-decoration-thickness: 3px;
+}
+
+.metadata-item a:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    text-decoration: none;
+    outline: 3px solid #ffdd00;
+}
+
+/* Share buttons - Expandable details */
+.share-buttons {
+    margin: 40px 0;
+    padding: 0;
+    background: var(--bg-subtle);
+    border: 2px solid var(--border-light);
+}
+
+.share-buttons-summary {
+    padding: 20px 32px;
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    user-select: none;
+}
+
+.share-buttons-summary::-webkit-details-marker {
+    display: none;
+}
+
+.share-buttons-summary:hover {
+    background-color: #e8f4f8;
+}
+
+.share-buttons-summary:focus {
+    background-color: #ffdd00;
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+}
+
+.share-buttons-heading {
+    font-size: 19px;
+    font-weight: 700;
+}
+
+.share-buttons-icon {
+    color: var(--govuk-blue);
+    flex-shrink: 0;
+}
+
+.share-buttons[open] .share-buttons-icon-plus {
+    display: none;
+}
+
+.share-buttons[open] .share-buttons-icon-minus {
+    display: block !important;
+}
+
+.share-buttons-content {
+    padding: 0 32px 32px 32px;
+}
+
+.share-buttons-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.share-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    background: #ffffff;
+    border: 1px solid var(--border-light);
+    text-decoration: none;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.share-button:hover {
+    border-color: var(--govuk-blue);
+    background-color: #e8f4f8;
+    color: var(--govuk-blue);
+}
+
+.share-button:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+}
+
+.share-button svg {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+}
+
+/* Content sections */
+.content-section {
+    margin-bottom: 72px;
+}
+
+.content-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 24px 0;
+    color: var(--text-primary);
+}
+
+.content-section h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 32px 0 16px 0;
+    color: var(--govuk-blue);
+}
+
+.content-section p {
+    font-size: 19px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.content-section ul,
+.content-section ol {
+    margin: 24px 0;
+    padding-left: 24px;
+}
+
+.content-section li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+/* Download artifacts panel */
+.download-artifacts-panel {
+    background: var(--bg-subtle);
+    padding: 32px;
+    margin: 64px 0;
+    border: 2px solid var(--border-light);
+    border-left: 5px solid var(--govuk-blue);
+}
+
+.download-artifacts-panel h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+
+.download-artifacts-panel > p {
+    font-size: 19px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+.download-artifacts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 24px;
+}
+
+.download-artifact-card {
+    background: #ffffff;
+    border: 2px solid var(--border-light);
+}
+
+.download-artifact-card:hover {
+    background-color: #f8f9fa;
+    border-color: var(--govuk-blue);
+}
+
+.download-artifact-card:focus-within {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+}
+
+.download-artifact-link {
+    display: block;
+    padding: 28px;
+    text-decoration: none;
+    height: 100%;
+}
+
+.download-artifact-link:focus {
+    outline: none;
+}
+
+.download-artifact-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.download-icon {
+    color: var(--govuk-blue);
+    width: 28px;
+    height: 28px;
+    stroke-width: 2;
+}
+
+.download-artifact-type {
+    background: var(--govuk-blue);
+    color: #ffffff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.download-artifact-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.download-artifact-card:hover .download-artifact-title {
+    color: var(--govuk-blue);
+}
+
+.download-artifact-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Resource cards - Compact and clean */
+.resource-cards-section {
+    margin: 60px 0;
+}
+
+.resource-cards-section > h2 {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 12px;
+}
+
+.resource-cards-section > p {
+    font-size: 19px;
+    color: var(--text-secondary);
+    margin-bottom: 28px;
+    line-height: 1.6;
+}
+
+.resource-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 20px;
+}
+
+.resource-card {
+    background: #ffffff;
+    border: 2px solid var(--border-light);
+    border-left: 4px solid var(--govuk-blue);
+    padding: 24px;
+    position: relative;
+}
+
+.resource-card:hover {
+    background-color: #f8f9fa;
+    border-color: var(--govuk-blue);
+}
+
+.resource-card:focus-within {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+}
+
+.resource-card-category {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--govuk-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.resource-card-title {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 10px 0;
+    line-height: 1.3;
+}
+
+.resource-card-title a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.resource-card:hover .resource-card-title a {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.resource-card-title a:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+}
+
+.resource-card-description {
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Lifecycle stages navigation - Journey visualization */
+.lifecycle-stages-nav {
+    background: #ffffff;
+    border: 2px solid var(--border-light);
+    padding: 32px 32px 32px 20px;
+    margin-bottom: 32px;
+    position: sticky;
+    top: 20px;
+}
+
+.lifecycle-stages-nav h2 {
+    margin: 0 0 32px 0;
+    font-size: 19px;
+    font-weight: 700;
+    padding-left: 32px;
+}
+
+.lifecycle-stages-nav .govuk-list {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    position: relative;
+}
+
+/* Vertical line connecting phases */
+.lifecycle-stages-nav .govuk-list::before {
+    content: '';
+    position: absolute;
+    left: 7px;
+    top: 20px;
+    bottom: 20px;
+    width: 2px;
+    background: var(--border-light);
+    z-index: 0;
+}
+
+.lifecycle-stages-nav .govuk-list li {
+    margin-bottom: 20px;
+    position: relative;
+    padding-left: 36px;
+}
+
+.lifecycle-stages-nav .govuk-list li:last-child {
+    margin-bottom: 0;
+}
+
+/* Circle indicators for each phase - centered on vertical line */
+.lifecycle-stages-nav .govuk-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+/* Color the circles based on phase */
+.lifecycle-stages-nav li:nth-child(1)::before {
+    background: #4c2c92; /* Discovery purple */
+}
+
+.lifecycle-stages-nav li:nth-child(2)::before {
+    background: #d4351c; /* Alpha red */
+}
+
+.lifecycle-stages-nav li:nth-child(3)::before {
+    background: #f47738; /* Beta orange */
+}
+
+.lifecycle-stages-nav li:nth-child(4)::before {
+    background: #00703c; /* Live green */
+}
+
+.lifecycle-stages-nav li:nth-child(5)::before {
+    background: #505a5f; /* Retirement grey */
+}
+
+/* Current phase indicator - border in same color as circle */
+.lifecycle-stages-nav li:has(.govuk-link--current):nth-child(1)::before {
+    border: 2px solid #4c2c92;
+    box-shadow: 0 0 0 1px #ffffff;
+}
+
+.lifecycle-stages-nav li:has(.govuk-link--current):nth-child(2)::before {
+    border: 2px solid #d4351c;
+    box-shadow: 0 0 0 1px #ffffff;
+}
+
+.lifecycle-stages-nav li:has(.govuk-link--current):nth-child(3)::before {
+    border: 2px solid #f47738;
+    box-shadow: 0 0 0 1px #ffffff;
+}
+
+.lifecycle-stages-nav li:has(.govuk-link--current):nth-child(4)::before {
+    border: 2px solid #00703c;
+    box-shadow: 0 0 0 1px #ffffff;
+}
+
+.lifecycle-stages-nav li:has(.govuk-link--current):nth-child(5)::before {
+    border: 2px solid #505a5f;
+    box-shadow: 0 0 0 1px #ffffff;
+}
+
+.lifecycle-stages-nav .govuk-link {
+    text-decoration: none;
+    display: block;
+    font-weight: 600;
+}
+
+.lifecycle-stages-nav .govuk-link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.lifecycle-stages-nav .govuk-link:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+}
+
+.lifecycle-stages-nav .govuk-link--current {
+    font-weight: 700;
+}
+
+/* Phase tags - Vibrant with border-radius */
+.phase-tag {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 800;
+    text-transform: uppercase;
+    border-radius: 8px;
+    margin-right: 8px;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border: 2px solid transparent;
+}
+
+.phase-tag:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+}
+
+.phase-tag:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.phase-tag--discovery {
+    background-color: #4c2c92;
+    color: #ffffff;
+}
+
+.phase-tag--discovery:hover {
+    background-color: #6f42c1;
+    text-decoration-color: #ffffff;
+}
+
+.phase-tag--alpha {
+    background-color: #d4351c;
+    color: #ffffff;
+}
+
+.phase-tag--alpha:hover {
+    background-color: #942514;
+    text-decoration-color: #ffffff;
+}
+
+.phase-tag--beta {
+    background-color: #f47738;
+    color: #ffffff;
+}
+
+.phase-tag--beta:hover {
+    background-color: #c25f2c;
+    text-decoration-color: #ffffff;
+}
+
+.phase-tag--live {
+    background-color: #00703c;
+    color: #ffffff;
+}
+
+.phase-tag--live:hover {
+    background-color: #005a30;
+    text-decoration-color: #ffffff;
+}
+
+.phase-tag--retirement {
+    background-color: #505a5f;
+    color: #ffffff;
+}
+
+.phase-tag--retirement:hover {
+    background-color: #383f43;
+    text-decoration-color: #ffffff;
+}
+
+/* Role badges - No radius, accessible, clickable */
+.role-badge {
+    display: inline-block;
+    padding: 10px 18px;
+    background: #ffffff;
+    border: 2px solid var(--border-light);
+    margin-right: 8px;
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.role-badge:hover {
+    border-color: var(--govuk-blue);
+    background-color: #e8f4f8;
+    color: var(--govuk-blue);
+}
+
+.role-badge:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+}
+
+/* Contents list styling */
+.part-navigation-container {
+    margin-bottom: 30px;
+}
+
+.dfe-contents-list {
+    margin-bottom: 30px;
+}
+
+.dfe-contents-list__title {
+    font-size: 1rem;
+    font-weight: 400;
+    margin: 0 0 10px 0;
+}
+
+.dfe-contents-list__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: none;
+}
+
+.dfe-contents-list__list-item {
+    margin-bottom: 8px;
+    font-size: 1rem;
+}
+
+.dfe-contents-list__list-item--dashed {
+    position: relative;
+    padding-left: 20px;
+}
+
+.dfe-contents-list__list-item--dashed .dfe-contents-list__list-item-dash::before {
+    content: "—";
+    position: absolute;
+    left: 0px;
+    width: 20px;
+    overflow: hidden;
+}
+
+.dfe-contents-list__list-item-dash {
+    position: absolute;
+    left: 0;
+}
+
+
+
+.dfe-contents-list__link {
+    text-decoration: underline;
+}
+
+.dfe-contents-list__link:hover {
+    text-decoration-thickness: 3px;
+}
+
+.dfe-contents-list__list-item--active {
+    font-weight: 700;
+}
+
+/* Related content sidebar */
+.dfe-contextual-sidebar {
+    border-top: 2px solid #1d70b8;
+    margin-bottom: 60px;
+    color: #0b0c0c;
+}
+
+.dfe-related-navigation {
+    margin-top: 15px;
+}
+
+.dfe-related-navigation__main-heading {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.dfe-related-navigation__nav-section {
+    margin-top: 0;
+}
+
+.dfe-related-navigation__link-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dfe-related-navigation__link {
+    margin-bottom: 10px;
+}
+
+.dfe-related-navigation__link:last-child {
+    margin-bottom: 0;
+}
+
+.dfe-related-navigation__section-link {
+    font-size: 16px;
+    text-decoration: underline;
+}
+
+.dfe-related-navigation__section-link:hover {
+    text-decoration-thickness: 3px;
+}
+
+/* Share sidebar */
+.dfe-share-sidebar {
+    border-top: 2px solid #1d70b8;
+    margin-top: 30px;
+    padding-top: 15px;
+    color: #0b0c0c;
+}
+
+.dfe-share-sidebar__heading {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.dfe-share-sidebar__nav {
+    margin-top: 0;
+}
+
+.dfe-share-sidebar__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dfe-share-sidebar__item {
+    margin-bottom: 10px;
+}
+
+.dfe-share-sidebar__item:last-child {
+    margin-bottom: 0;
+}
+
+.dfe-share-sidebar__link {
+    font-size: 16px;
+    text-decoration: underline;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    color: #1d70b8;
+}
+
+.dfe-share-sidebar__link:hover {
+    text-decoration-thickness: 3px;
+}
+
+.dfe-share-sidebar__link:focus {
+    background-color: #ffdd00;
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+    color: #0b0c0c;
+}
+
+.dfe-share-sidebar__link:active {
+    color: #003078;
+}
+
+/* Lifecycle journey - Full-width sections */
+.lifecycle-journey {
+    margin: 60px 0 0 0;
+}
+
+.lifecycle-journey-stage {
+    display: block;
+    padding: 60px 0;
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-light);
+    position: relative;
+}
+
+.lifecycle-journey-stage:hover {
+    background-color: #fafafa;
+}
+
+.lifecycle-journey-stage:focus {
+    outline: 4px solid #ffdd00;
+    outline-offset: -4px;
+}
+
+.lifecycle-journey-stage__content {
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 40px;
+    align-items: center;
+}
+
+.lifecycle-journey-stage__number {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 48px;
+    font-weight: 700;
+    color: rgba(0, 0, 0, 0.1);
+    border: 3px solid rgba(0, 0, 0, 0.1);
+}
+
+.lifecycle-journey-stage__main {
+    flex: 1;
+}
+
+.lifecycle-journey-stage__title {
+    font-size: 48px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    line-height: 1.1;
+    color: var(--text-primary);
+}
+
+.lifecycle-journey-stage__summary {
+    font-size: 20px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+    margin: 0 0 12px 0;
+    max-width: 800px;
+}
+
+.lifecycle-journey-stage__roles {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+.lifecycle-journey-stage__arrow {
+    opacity: 0.4;
+}
+
+.lifecycle-journey-stage:hover .lifecycle-journey-stage__arrow {
+    opacity: 1;
+    transform: translateX(8px);
+}
+
+.lifecycle-journey-stage:hover .lifecycle-journey-stage__title {
+    color: var(--govuk-blue);
+}
+
+/* Phase-specific colors */
+.lifecycle-journey-stage--discovery:hover {
+    background: linear-gradient(to right, rgba(76, 44, 146, 0.03), transparent);
+    border-left: 6px solid #4c2c92;
+}
+
+.lifecycle-journey-stage--discovery .lifecycle-journey-stage__number {
+    color: #4c2c92;
+    border-color: #4c2c92;
+}
+
+.lifecycle-journey-stage--alpha:hover {
+    background: linear-gradient(to right, rgba(212, 53, 28, 0.03), transparent);
+    border-left: 6px solid #d4351c;
+}
+
+.lifecycle-journey-stage--alpha .lifecycle-journey-stage__number {
+    color: #d4351c;
+    border-color: #d4351c;
+}
+
+.lifecycle-journey-stage--beta:hover {
+    background: linear-gradient(to right, rgba(244, 119, 56, 0.03), transparent);
+    border-left: 6px solid #f47738;
+}
+
+.lifecycle-journey-stage--beta .lifecycle-journey-stage__number {
+    color: #f47738;
+    border-color: #f47738;
+}
+
+.lifecycle-journey-stage--live:hover {
+    background: linear-gradient(to right, rgba(0, 112, 60, 0.03), transparent);
+    border-left: 6px solid #00703c;
+}
+
+.lifecycle-journey-stage--live .lifecycle-journey-stage__number {
+    color: #00703c;
+    border-color: #00703c;
+}
+
+.lifecycle-journey-stage--retirement:hover {
+    background: linear-gradient(to right, rgba(80, 90, 95, 0.03), transparent);
+    border-left: 6px solid #505a5f;
+}
+
+.lifecycle-journey-stage--retirement .lifecycle-journey-stage__number {
+    color: #505a5f;
+    border-color: #505a5f;
+}
+
+/* Homepage cards */
+.homepage-hero {
+    background: #f3f2f1;
+    padding: 40px 0 60px 0;
+}
+
+.homepage-hero h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.homepage-hero .govuk-body-l {
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.homepage-section {
+    padding: 60px 0;
+}
+
+/* Chevron cards - vertical list layout */
+.dfe-chevron-card__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.dfe-chevron-card {
+    border-top: 1px solid var(--border-light);
+    margin: 0;
+    padding: 5px 0 20px 0;
+}
+
+.dfe-chevron-card:first-child {
+    border-top: none;
+    padding-top: 0;
+}
+
+.dfe-chevron-card:first-child .dfe-chevron-card__wrapper {
+    padding-top: 0;
+}
+
+.dfe-chevron-card__wrapper {
+    padding: 19px 0 4px;
+    position: relative;
+}
+
+.dfe-chevron-card__link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+}
+
+.dfe-chevron-card__link::after {
+    bottom: 0;
+    content: "";
+    display: block;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.dfe-chevron-card__link::before {
+    border-right: 4px solid var(--govuk-blue);
+    border-top: 4px solid var(--govuk-blue);
+    content: "";
+    display: block;
+    height: 12px;
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    margin-top: 5px;
+    transform: translateY(0) rotate(45deg) scale(1);
+    width: 12px;
+    z-index: 1;
+}
+
+.dfe-chevron-card__link:hover::before {
+    border-color: var(--govuk-blue-dark);
+}
+
+.dfe-chevron-card__link:focus::before {
+    border-color: var(--text-primary);
+}
+
+.dfe-chevron-card__link:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+}
+
+.dfe-chevron-card__wrapper .govuk-heading-s {
+    margin: 0 30px 16px 0;
+    font-size: 19px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.dfe-chevron-card__link:hover .govuk-heading-s {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.dfe-chevron-card__description {
+    margin: 0 30px 0 0;
+    font-size: 16px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+@media (max-width: 40.0625em) {
+    .dfe-chevron-card__wrapper .govuk-heading-s,
+    .dfe-chevron-card__description {
+        font-size: 19px;
+    }
+}
+
+/* Roadmap sections */
+.roadmap-section {
+    margin: 48px 0;
+    padding-bottom: 48px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.roadmap-section:last-child {
+    border-bottom: none;
+}
+
+/* Roadmap features */
+.roadmap-feature {
+    margin-bottom: 48px;
+}
+
+.roadmap-feature:last-child {
+    margin-bottom: 0;
+}
+
+.roadmap-feature h2 {
+    margin-bottom: 24px;
+}
+
+.roadmap-feature .govuk-summary-list {
+    margin-bottom: 0;
+}
+
+/* Topic page styling */
+.topic-list {
+    margin-top: 32px;
+}
+
+.topic-item {
+    margin-bottom: 24px;
+}
+
+.topic-item h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+
+.topic-item h3 a {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.topic-item h3 a:hover {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.topic-item h3 a:focus {
+    background-color: #ffdd00;
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.topic-item p {
+    font-size: 19px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+}
+
+.topic-item ul {
+    margin-top: 12px;
+    padding-left: 0;
+    list-style: none;
+}
+
+.topic-item ul li {
+    margin-bottom: 8px;
+}
+
+.topic-item ul li a {
+    font-size: 16px;
+    color: var(--govuk-blue);
+    text-decoration: underline;
+}
+
+.topic-item ul li a:hover {
+    text-decoration-thickness: 3px;
+}
+
+.topic-item ul li a:focus {
+    background-color: #ffdd00;
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+/* Overview page styling */
+.overview-sections {
+    margin-top: 48px;
+}
+
+.overview-section {
+    margin-bottom: 48px;
+}
+
+.overview-section h2 {
+    font-size: 27px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: var(--text-primary);
+}
+
+.overview-section ul {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.overview-section ul li {
+    margin-bottom: 12px;
+}
+
+.overview-section ul li a {
+    font-size: 19px;
+    color: var(--govuk-blue);
+    text-decoration: underline;
+}
+
+.overview-section ul li a:hover {
+    color: var(--govuk-blue-dark);
+    text-decoration-thickness: 3px;
+}
+
+.overview-section ul li a:focus {
+    background-color: #ffdd00;
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.overview-section:last-child {
+    margin-bottom: 0;
+}
+
+/* Content listing pages */
+.content-listing {
+    margin-top: 48px;
+}
+
+.content-listing-item {
+    background: #ffffff;
+    border: 2px solid var(--border-light);
+    border-left: 5px solid var(--govuk-blue);
+    padding: 40px;
+    margin-bottom: 24px;
+}
+
+.content-listing-item:hover {
+    background-color: #f8f9fa;
+    border-color: var(--govuk-blue);
+}
+
+.content-listing-item:focus-within {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+}
+
+.content-listing-item h2 {
+    margin: 0 0 16px 0;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.content-listing-item h2 a {
+    text-decoration: none;
+    color: var(--text-primary);
+}
+
+.content-listing-item:hover h2 a {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.content-listing-item h2 a:focus {
+    background-color: #ffdd00;
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+}
+
+.content-listing-meta {
+    margin-bottom: 16px;
+    font-size: 16px;
+    color: var(--text-secondary);
+}
+
+.content-listing-item p {
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: 0;
+}
+
+/* Page metadata - Bottom of page information */
+.page-metadata {
+    background: #1d70b8;
+    color: #ffffff;
+    padding: 32px 0;
+    margin-top: 80px;
+}
+
+.page-metadata__heading {
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0 0 20px 0;
+}
+
+.page-metadata__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    margin: 0 0 24px 0;
+}
+
+.page-metadata__item {
+    display: flex;
+    gap: 8px;
+}
+
+.page-metadata__term {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.page-metadata__detail {
+    font-size: 16px;
+    color: #ffffff;
+    margin: 0;
+}
+
+.page-metadata__history {
+    margin: 0;
+}
+
+.page-metadata__history-summary {
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 700;
+    color: #ffffff;
+    list-style: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.page-metadata__history-summary::-webkit-details-marker {
+    display: none;
+}
+
+.page-metadata__history-summary::before {
+    content: '+';
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    line-height: 18px;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    color: #ffffff;
+    font-weight: 700;
+}
+
+.page-metadata__history[open] .page-metadata__history-summary::before {
+    content: '−';
+}
+
+.page-metadata__history-summary:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.page-metadata__history-content {
+    margin-top: 20px;
+    padding: 24px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.page-metadata__history-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page-metadata__history-item {
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.page-metadata__history-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.page-metadata__history-item time {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 8px;
+}
+
+.page-metadata__history-item p {
+    margin: 0;
+    font-size: 16px;
+    color: #ffffff;
+}
+
+/* Feedback section */
+.feedback-section {
+    background: var(--bg-subtle);
+    padding: 40px;
+    margin: 80px 0;
+    border: 2px solid var(--border-light);
+}
+
+.feedback-section h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+
+.feedback-section > p {
+    font-size: 19px;
+    color: var(--text-secondary);
+    margin-bottom: 32px;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.feedback-button {
+    background: var(--govuk-blue);
+    color: #ffffff;
+    border: none;
+    padding: 16px 40px;
+    font-size: 19px;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.feedback-button:hover {
+    background: var(--govuk-blue-dark);
+}
+
+.feedback-button:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+}
+
+.feedback-button--secondary {
+    background: var(--govuk-blue);
+    color: #ffffff;
+    border: none;
+}
+
+.feedback-button--secondary:hover {
+    background: var(--govuk-blue-dark);
+}
+
+.feedback-button--secondary:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    border-color: var(--text-primary);
+}
+
+/* Key information */
+.key-information {
+    background: #fff7e6;
+    border-left: 5px solid #f47738;
+    padding: 32px;
+    margin: 40px 0;
+}
+
+/* News articles */
+.news-article {
+    padding: 32px 0;
+    border-bottom: 2px solid var(--border-light);
+    margin-bottom: 32px;
+}
+
+.news-article:last-child {
+    border-bottom: none;
+}
+
+.news-article h3 {
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 12px 0;
+}
+
+.news-article h3 a {
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.news-article h3 a:hover {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.news-article h3 a:focus {
+    background-color: #ffdd00;
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+}
+
+.news-meta {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+/* Breadcrumbs */
+.govuk-breadcrumbs {
+    padding: 24px 0;
+}
+
+.govuk-breadcrumbs__link {
+    color: var(--text-secondary);
+    text-decoration: underline;
+}
+
+.govuk-breadcrumbs__link:hover {
+    color: var(--govuk-blue);
+    text-decoration-thickness: 3px;
+}
+
+.govuk-breadcrumbs__link:focus {
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    outline: 3px solid #ffdd00;
+    text-decoration: none;
+}
+
+/* Status indicators */
+.status-indicator {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+    border: 2px solid #ffffff;
+    box-shadow: 0 0 0 1px var(--border-mid);
+}
+
+.status-indicator--published {
+    background: var(--govuk-green);
+}
+
+.status-indicator--draft {
+    background: var(--govuk-orange);
+}
+
+.status-indicator--experimental {
+    background: var(--govuk-purple);
+}
+
+/* Tags - Accessible with good contrast */
+.govuk-tag {
+    padding: 6px 14px;
+    font-weight: 700;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    border: 2px solid transparent;
+}
+
+.govuk-tag:hover {
+    filter: brightness(1.1);
+}
+
+.govuk-tag:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+    background-color: #ffdd00;
+    color: var(--text-primary);
+}
+
+/* Responsive design */
+@media (max-width: 48.0625em) {
+    .lifecycle-journey-stage__content {
+        grid-template-columns: 60px 1fr;
+        gap: 24px;
+    }
+    
+    .lifecycle-journey-stage__number {
+        width: 60px;
+        height: 60px;
+        font-size: 32px;
+    }
+    
+    .lifecycle-journey-stage__title {
+        font-size: 32px;
+    }
+    
+    .lifecycle-journey-stage__summary {
+        font-size: 18px;
+    }
+    
+    .lifecycle-journey-stage__arrow {
+        display: none;
+    }
+    
+    .page-masthead {
+        padding: 60px 0 80px;
+    }
+    
+    .masthead-title {
+        font-size: 40px;
+    }
+    
+    .masthead-summary {
+        font-size: 20px;
+    }
+    
+    .resource-cards-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .download-artifacts-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .content-section h2 {
+        font-size: 32px;
+    }
+}
+
+@media (max-width: 40.0625em) {
+    .page-masthead {
+        padding: 40px 0 60px;
+    }
+    
+    .masthead-title {
+        font-size: 32px;
+    }
+    
+    .masthead-summary {
+        font-size: 19px;
+    }
+    
+    .download-artifacts-panel,
+    .feedback-section {
+        padding: 24px 20px;
+    }
+    
+    .share-buttons-summary,
+    .share-buttons-content {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    
+    .resource-card,
+    .homepage-card {
+        padding: 32px 24px;
+    }
+    
+    .feedback-buttons {
+        flex-direction: column;
+    }
+    
+    .feedback-button {
+        width: 100%;
+    }
+    
+    .share-buttons-list {
+        flex-direction: column;
+    }
+    
+    .share-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .content-section {
+        margin-bottom: 48px;
+    }
+    
+    .content-section h2 {
+        font-size: 28px;
+    }
+    
+    .homepage-hero h1 {
+        font-size: 32px;
+    }
+    
+    .homepage-hero {
+        padding: 40px 0;
+    }
+}
+
+/* Print styles */
+@media print {
+    .page-masthead {
+        background: none !important;
+        color: #0b0c0c;
+        padding: 20px 0;
+        border-bottom: 3px solid #0b0c0c;
+    }
+    
+    .masthead-title,
+    .masthead-summary {
+        color: #0b0c0c;
+    }
+    
+    .feedback-section,
+    .share-buttons,
+    .lifecycle-stages-nav {
+        display: none;
+    }
+    
+    .resource-card,
+    .download-artifact-card {
+        break-inside: avoid;
+        border: 2px solid #0b0c0c;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .page-masthead {
+        background: #1d70b8;
+    }
+    
+    .resource-card,
+    .download-artifact-card,
+    .homepage-card {
+        border-width: 3px;
+    }
+}
+
+/* Focus visible for better keyboard navigation */
+*:focus-visible {
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+}
+
+a:focus-visible {
+    background-color: #ffdd00;
+    color: #0b0c0c;
+    outline: 3px solid transparent;
+    box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c;
+    text-decoration: none;
+}
+
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+.govuk-breadcrumbs{
+    padding-top: 0;
+}
+
+/* CTA Section - Eye-catching call to action */
+.dfe-cta-section {
+    background: linear-gradient(135deg, #5694ca 0%, #1d70b8 100%);
+    color: #ffffff;
+    padding: 48px 40px;
+    margin: 0px 0 60px 0;
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.dfe-cta-section__heading {
+    color: #ffffff;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    line-height: 1.3;
+}
+
+.dfe-cta-section__text {
+    color: #ffffff;
+    font-size: 19px;
+    line-height: 1.6;
+    margin: 0 0 32px 0;
+    max-width: 800px;
+}
+
+.dfe-cta-section__button {
+    background-color: #ffffff !important;
+    color: #1d70b8 !important;
+    box-shadow: 0 2px 0 #0b0c0c;
+    margin-bottom: 0;
+}
+
+.dfe-cta-section__button:hover {
+    background-color: #f3f2f1 !important;
+    color: #003078 !important;
+}
+
+.dfe-cta-section__button:focus {
+    background-color: #ffdd00 !important;
+    color: #0b0c0c !important;
+    box-shadow: 0 2px 0 #0b0c0c, 0 0 0 3px #ffdd00;
+}
+
+.dfe-cta-section__button:active {
+    background-color: #e8e8e8 !important;
+    color: #003078 !important;
+    box-shadow: 0 0 0 #0b0c0c;
+    top: 2px;
+}
+
+@media (max-width: 640px) {
+    .dfe-cta-section {
+        padding: 32px 24px;
+        margin: 32px 0;
+    }
+
+    .dfe-cta-section__heading {
+        font-size: 24px;
+    }
+
+    .dfe-cta-section__text {
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,59 @@
+@{
+    Layout = "_Layout";
+}
+
+
+ @if (IsSectionDefined("Breadcrumbs"))
+            {
+                <nav class="govuk-breadcrumbs" aria-label="Breadcrumbs">
+                    <ol class="govuk-breadcrumbs__list">
+                        @RenderSection("Breadcrumbs", required: false)
+                    </ol>
+                </nav>
+            }
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            @if (IsSectionDefined("PageHeader"))
+            {
+                @RenderSection("PageHeader", required: false)
+            }
+
+            @if (IsSectionDefined("Contents"))
+            {
+                <a href="#page-content" class="govuk-skip-link">Skip contents</a>
+                <aside class="part-navigation-container" role="complementary">
+                    <nav aria-label="Pages in this guide" class="dfe-contents-list govuk-!-margin-bottom-9">
+                        <h2 class="dfe-contents-list__title">Contents</h2>
+                        <ol class="dfe-contents-list__list">
+                            @RenderSection("Contents", required: false)
+                        </ol>
+                    </nav>
+                </aside>
+            }
+            </div>
+               </div>
+
+<div class="govuk-grid-row">
+             <div class="govuk-grid-column-two-thirds">
+
+            @RenderBody()
+
+            @if (IsSectionDefined("Navigation"))
+            {
+                <nav class="govuk-pagination" role="navigation" aria-label="Pagination">
+                    @RenderSection("Navigation", required: false)
+                </nav>
+            }
+        </div>
+
+        @if (IsSectionDefined("Sidebar") || IsSectionDefined("Share"))
+        {
+            <div class="govuk-grid-column-one-third sidebar-navigation">
+                @RenderSection("Sidebar", required: false)
+                @RenderSection("Share", required: false)
+            </div>
+        }
+    </div>
+</div>
+

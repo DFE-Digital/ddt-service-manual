@@ -1,0 +1,39 @@
+@{
+    Layout = "_Layout";
+}
+
+@section Masthead {
+    @if (IsSectionDefined("MastheadContent"))
+    {
+        @RenderSection("MastheadContent", required: false)
+    }
+}
+
+<div class="content-wrapper">
+    <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                @if (IsSectionDefined("Breadcrumbs"))
+                {
+                    <nav class="govuk-breadcrumbs" aria-label="Breadcrumbs">
+                        <ol class="govuk-breadcrumbs__list">
+                            @RenderSection("Breadcrumbs", required: false)
+                        </ol>
+                    </nav>
+                }
+
+                <article>
+                    @RenderBody()
+                </article>
+            </div>
+
+            @if (IsSectionDefined("Sidebar"))
+            {
+                <aside class="govuk-grid-column-one-third" role="complementary">
+                    @RenderSection("Sidebar", required: false)
+                </aside>
+            }
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+@model (string Context, List<(string Label, string Value, string? Url)> Items)
+
+<div class="metadata-panel">
+    <h3 class="govuk-heading-s">@Model.Context</h3>
+    <ul class="govuk-list govuk-!-font-size-16">
+        @foreach (var item in Model.Items)
+        {
+            <li class="metadata-item">
+                <strong>@item.Label:</strong> 
+                @if (!string.IsNullOrEmpty(item.Url))
+                {
+                    <a href="@item.Url" class="govuk-link">@item.Value</a>
+                }
+                else
+                {
+                    @item.Value
+                }
+            </li>
+        }
+    </ul>
+</div>
+

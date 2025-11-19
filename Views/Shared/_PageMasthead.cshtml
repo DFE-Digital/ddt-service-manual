@@ -1,0 +1,45 @@
+@model ServiceManual.Models.PageMastheadViewModel
+
+<div class="page-masthead">
+    <div class="govuk-width-container">
+        @if (Model.Breadcrumbs != null && Model.Breadcrumbs.Any())
+        {
+            <nav class="masthead-breadcrumbs" aria-label="Breadcrumb">
+                <ol class="masthead-breadcrumbs__list">
+                    @foreach (var breadcrumb in Model.Breadcrumbs)
+                    {
+                        <li class="masthead-breadcrumbs__item">
+                            @if (!string.IsNullOrEmpty(breadcrumb.Href))
+                            {
+                                <a class="masthead-breadcrumbs__link" href="@breadcrumb.Href">@breadcrumb.Text</a>
+                            }
+                            else
+                            {
+                                <span class="masthead-breadcrumbs__current">@breadcrumb.Text</span>
+                            }
+                        </li>
+                    }
+                </ol>
+            </nav>
+        }
+        
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                @if (!string.IsNullOrEmpty(Model.Category))
+                {
+                    <p class="govuk-body-s masthead-category">
+                        <strong class="govuk-tag govuk-tag--blue">@Model.Category</strong>
+                    </p>
+                }
+                
+                <h1 class="govuk-heading-xl masthead-title">@Model.Title</h1>
+                
+                @if (!string.IsNullOrEmpty(Model.Summary))
+                {
+                    <p class="govuk-body-l masthead-summary">@Model.Summary</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+

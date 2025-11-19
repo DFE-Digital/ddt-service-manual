@@ -1,0 +1,64 @@
+@* 
+    Example overview/index page template
+    
+    To use this template structure:
+    1. Set Layout = "_OverviewPage" in your view
+    2. Add your main heading and description in the body
+    3. Use the OverviewSections section for categorized links
+*@
+
+@* 
+    Example view:
+    
+    @{
+        ViewData["Title"] = "Overview Page Title";
+        Layout = "_OverviewPage";
+    }
+
+    @section Breadcrumbs {
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/topic">Topic</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Overview Page</li>
+    }
+
+    <h1 class="govuk-heading-xl">Overview Page Title</h1>
+    
+    <p class="govuk-body-l">
+        Brief description of what this overview page covers and who it's for.
+    </p>
+
+    @section OverviewSections {
+        <div class="overview-section">
+            <h2 class="govuk-heading-l">Section heading</h2>
+            <ul class="govuk-list">
+                <li>
+                    <a href="/link-1" class="govuk-link">Link to related content 1</a>
+                </li>
+                <li>
+                    <a href="/link-2" class="govuk-link">Link to related content 2</a>
+                </li>
+                <li>
+                    <a href="/link-3" class="govuk-link">Link to related content 3</a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="overview-section">
+            <h2 class="govuk-heading-l">Another section</h2>
+            <ul class="govuk-list">
+                <li>
+                    <a href="/another-link-1" class="govuk-link">Another link 1</a>
+                </li>
+                <li>
+                    <a href="/another-link-2" class="govuk-link">Another link 2</a>
+                </li>
+            </ul>
+        </div>
+    }
+
+*@
+

@@ -1,0 +1,53 @@
+@* 
+    Example guidance page template
+    
+    To use this template structure:
+    1. Set Layout = "_GuidanceLayout" in your view
+    2. Use the sections below to customize your page
+    3. Put your main content in the body
+*@
+
+@* 
+    Example view:
+    
+    @{
+        ViewData["Title"] = "Your Guidance Title";
+        Layout = "_GuidanceLayout";
+    }
+
+    @section MastheadContent {
+        <div class="page-masthead">
+            <div class="govuk-width-container">
+                <div class="masthead-category">
+                    <span class="govuk-tag">Category</span>
+                </div>
+                <h1 class="masthead-title">Your Guidance Title</h1>
+                <p class="masthead-summary">Brief summary of the guidance</p>
+            </div>
+        </div>
+    }
+
+    @section Breadcrumbs {
+        <li class="govuk-breadcrumbs__list-item">
+            <a class="govuk-breadcrumbs__link" href="/">Home</a>
+        </li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Your Guidance Title</li>
+    }
+
+    <h2 class="govuk-heading-l">Main heading</h2>
+    
+    <p class="govuk-body">
+        Your guidance content goes here.
+    </p>
+
+    @section Sidebar {
+        <div class="related-content">
+            <h2 class="govuk-heading-s">Related content</h2>
+            <ul class="govuk-list">
+                <li><a href="/related-page" class="govuk-link">Related page</a></li>
+            </ul>
+        </div>
+    }
+
+*@
+

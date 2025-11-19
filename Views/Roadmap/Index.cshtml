@@ -1,0 +1,124 @@
+@{
+    ViewData["Title"] = "Roadmap";
+    Layout = "_ContentPage";
+}
+
+@section Breadcrumbs {
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item" aria-current="page">Roadmap</li>
+}
+
+@section PageHeader {
+    <h1 id="page-heading" class="govuk-heading-xl">Roadmap</h1>
+
+    <p class="govuk-body-l">
+        Our plan for developing and improving the Service Manual. We're working to make it easier for teams to find and use standards, guidance, and best practices.
+    </p>
+}
+
+<div id="page-content"></div>
+
+<h2 class="govuk-heading-l">Now</h2>
+
+<div class="roadmap-feature">
+    <h2 class="govuk-heading-m">Establish the manual</h2>
+    <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Timescale</dt>
+            <dd class="govuk-summary-list__value">November to December 2025</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Description</dt>
+            <dd class="govuk-summary-list__value">Establishing the Service Manual as the central entry point for all DfE standards and guidance, improving navigation and discoverability of existing manuals and resources.</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Status</dt>
+            <dd class="govuk-summary-list__value">
+                <strong class="govuk-tag govuk-tag--green">Delivered</strong>
+            </dd>
+        </div>
+    </dl>
+</div>
+
+<div class="roadmap-feature">
+    <h2 class="govuk-heading-m">Information architecture</h2>
+    <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Timescale</dt>
+            <dd class="govuk-summary-list__value">November to December 2025</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Description</dt>
+            <dd class="govuk-summary-list__value">Developing a clear information architecture to help teams navigate and find the guidance they need.</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Status</dt>
+            <dd class="govuk-summary-list__value">
+                <strong class="govuk-tag govuk-tag--blue">Started</strong>
+            </dd>
+        </div>
+    </dl>
+</div>
+
+<div class="roadmap-feature">
+    <h2 class="govuk-heading-m">Content strategy and standardising content types and patterns</h2>
+    <dl class="govuk-summary-list">
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Timescale</dt>
+            <dd class="govuk-summary-list__value">November to December 2025</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Description</dt>
+            <dd class="govuk-summary-list__value">Developing a content strategy and standardising content types and patterns to ensure consistency across all guidance.</dd>
+        </div>
+        <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Status</dt>
+            <dd class="govuk-summary-list__value">
+                <strong class="govuk-tag govuk-tag--blue">Started</strong>
+            </dd>
+        </div>
+    </dl>
+</div>
+
+@section Contents {
+    @{
+        var activeSection = ViewData["ActiveSection"]?.ToString() ?? "now";
+    }
+    <li class="dfe-contents-list__list-item dfe-contents-list__list-item--dashed @(activeSection == "now" ? "dfe-contents-list__list-item--active" : "")">
+        <span class="dfe-contents-list__list-item-dash" aria-hidden="true"></span>
+        <span aria-current="page">Now</span>
+    </li>
+    <li class="dfe-contents-list__list-item dfe-contents-list__list-item--dashed">
+        <span class="dfe-contents-list__list-item-dash" aria-hidden="true"></span>
+        <a class="dfe-contents-list__link govuk-link" href="/roadmap/next">Next</a>
+    </li>
+    <li class="dfe-contents-list__list-item dfe-contents-list__list-item--dashed">
+        <span class="dfe-contents-list__list-item-dash" aria-hidden="true"></span>
+        <a class="dfe-contents-list__link govuk-link" href="/roadmap/later">Later</a>
+    </li>
+}
+
+@section Sidebar {
+    <div class="dfe-contextual-sidebar govuk-!-display-none-print">
+        <div class="dfe-related-navigation govuk-!-display-none-print">
+            <h2 id="related-nav-related_items" class="dfe-related-navigation__main-heading">Related content</h2>
+            <nav class="dfe-related-navigation__nav-section" aria-labelledby="related-nav-related_items">
+                <ul class="dfe-related-navigation__link-list">
+                    <li class="dfe-related-navigation__link">
+                        <a class="govuk-link dfe-related-navigation__section-link dfe-related-navigation__section-link--sidebar" href="/about">About this product</a>
+                    </li>
+                    <li class="dfe-related-navigation__link">
+                        <a class="govuk-link dfe-related-navigation__section-link dfe-related-navigation__section-link--sidebar" href="/">Service Manual homepage</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+}
+
+@section Share {
+    @await Html.PartialAsync("_ShareSidebar")
+}
+
