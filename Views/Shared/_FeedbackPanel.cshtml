@@ -7,29 +7,30 @@
     <p class="govuk-body">Help us improve the Service Manual by giving your feedback.</p>
     
     <div class="feedback-buttons">
-        <button type="button" class="feedback-button govuk-button" data-feedback="yes">
+        <button type="button" class="feedback-button govuk-button" data-feedback="yes" aria-label="Yes, this page was useful">
             Yes
         </button>
-        <button type="button" class="feedback-button feedback-button--secondary govuk-button govuk-button--secondary" data-feedback="no">
+        <button type="button" class="feedback-button feedback-button--secondary govuk-button govuk-button--secondary" data-feedback="no" aria-label="No, this page was not useful">
             No
         </button>
     </div>
     
-    <div id="feedback-details" class="govuk-!-margin-top-4" style="display: none;">
+    <div id="feedback-details" class="govuk-!-margin-top-4" style="display: none;" role="region" aria-labelledby="feedback-details-heading">
+        <h3 id="feedback-details-heading" class="govuk-visually-hidden">Feedback form</h3>
         <div class="govuk-form-group">
             <label class="govuk-label" for="feedback-comment">
                 How could we improve this page? (optional)
             </label>
-            <textarea class="govuk-textarea" id="feedback-comment" name="feedback-comment" rows="3" maxlength="500"></textarea>
-            <div class="govuk-hint">You have 500 characters remaining</div>
+            <textarea class="govuk-textarea" id="feedback-comment" name="feedback-comment" rows="3" maxlength="500" aria-describedby="feedback-hint"></textarea>
+            <div id="feedback-hint" class="govuk-hint">You have 500 characters remaining</div>
         </div>
         
-        <button type="button" class="govuk-button" data-module="govuk-button">
+        <button type="button" class="govuk-button" data-module="govuk-button" aria-label="Send feedback">
             Send feedback
         </button>
     </div>
     
-    <div id="feedback-thanks" class="govuk-!-margin-top-4" style="display: none;">
+    <div id="feedback-thanks" class="govuk-!-margin-top-4" style="display: none;" role="status" aria-live="polite" aria-atomic="true">
         <div class="govuk-panel govuk-panel--confirmation" style="background-color: #00703c;">
             <h2 class="govuk-panel__title">
                 Thank you for your feedback
@@ -46,13 +47,29 @@
     document.querySelectorAll('[data-feedback]').forEach(button => {
         button.addEventListener('click', function() {
             const feedback = this.getAttribute('data-feedback');
-            document.getElementById('feedback-details').style.display = feedback === 'no' ? 'block' : 'none';
+            const feedbackDetails = document.getElementById('feedback-details');
+            const feedbackThanks = document.getElementById('feedback-thanks');
+            
+            if (feedback === 'no') {
+                feedbackDetails.style.display = 'block';
+                feedbackDetails.setAttribute('aria-hidden', 'false');
+                // Focus the textarea for keyboard users
+                document.getElementById('feedback-comment').focus();
+            } else {
+                feedbackDetails.style.display = 'none';
+                feedbackDetails.setAttribute('aria-hidden', 'true');
+            }
             
             if (feedback === 'yes') {
-                document.getElementById('feedback-thanks').style.display = 'block';
+                feedbackThanks.style.display = 'block';
+                feedbackThanks.setAttribute('aria-hidden', 'false');
                 setTimeout(() => {
-                    document.getElementById('feedback-thanks').style.display = 'none';
+                    feedbackThanks.style.display = 'none';
+                    feedbackThanks.setAttribute('aria-hidden', 'true');
                 }, 5000);
+            } else {
+                feedbackThanks.style.display = 'none';
+                feedbackThanks.setAttribute('aria-hidden', 'true');
             }
         });
     });
