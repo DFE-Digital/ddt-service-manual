@@ -1,0 +1,187 @@
+@using ServiceManual.Services
+@model DdtStandardDetailDto
+
+@{
+    ViewData["Title"] = Model?.Title ?? "Standard Details";
+    var compassStandardUrl = ViewBag.CompassStandardUrl as string ?? "";
+    var errorMessage = ViewBag.ErrorMessage as string;
+}
+
+@section Breadcrumbs {
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="/">Home</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="@Url.Action("Index", "Standards")">Standards</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item" aria-current="page">@(Model?.Title ?? "Standard")</li>
+}
+
+@if (!string.IsNullOrEmpty(errorMessage))
+{
+    <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-full">
+                <div class="govuk-error-summary" aria-labelledby="error-summary-title" role="alert" tabindex="-1" data-module="govuk-error-summary">
+                    <h2 class="govuk-error-summary__title" id="error-summary-title">
+                        There is a problem
+                    </h2>
+                    <div class="govuk-error-summary__body">
+                        <ul class="govuk-list govuk-error-summary__list">
+                            <li>
+                                <a href="#standard-content">@errorMessage</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@if (Model != null)
+{
+    <div class="govuk-width-container" id="standard-content">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-xl">@Model.Title</h1>
+
+                @if (!string.IsNullOrEmpty(Model.Summary))
+                {
+                    <p class="govuk-body-l">@Model.Summary</p>
+                }
+
+                <dl class="govuk-summary-list">
+                    @if (!string.IsNullOrEmpty(Model.Version))
+                    {
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Version</dt>
+                            <dd class="govuk-summary-list__value">@Model.Version</dd>
+                        </div>
+                    }
+
+                    @if (Model.Categories.Any())
+                    {
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Categories</dt>
+                            <dd class="govuk-summary-list__value">
+                                @foreach (var cat in Model.Categories)
+                                {
+                                    <span class="govuk-tag govuk-tag--grey govuk-!-margin-right-1">@cat</span>
+                                }
+                            </dd>
+                        </div>
+                    }
+
+                    @if (Model.SubCategories.Any())
+                    {
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Sub-categories</dt>
+                            <dd class="govuk-summary-list__value">
+                                @foreach (var subCat in Model.SubCategories)
+                                {
+                                    <span class="govuk-tag govuk-tag--grey govuk-!-margin-right-1">@subCat</span>
+                                }
+                            </dd>
+                        </div>
+                    }
+
+                    @if (Model.Phases.Any())
+                    {
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Phases</dt>
+                            <dd class="govuk-summary-list__value">
+                                @string.Join(", ", Model.Phases.Select(p => p.Name))
+                            </dd>
+                        </div>
+                    }
+
+                    @if (Model.LastUpdated.HasValue)
+                    {
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Last updated</dt>
+                            <dd class="govuk-summary-list__value">@Model.LastUpdated.Value.ToString("dd MMM yyyy")</dd>
+                        </div>
+                    }
+
+                    @if (Model.FirstPublished.HasValue)
+                    {
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">First published</dt>
+                            <dd class="govuk-summary-list__value">@Model.FirstPublished.Value.ToString("dd MMM yyyy")</dd>
+                        </div>
+                    }
+
+                    @if (Model.LegalStandard == true)
+                    {
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Legal standard</dt>
+                            <dd class="govuk-summary-list__value">Yes</dd>
+                        </div>
+                    }
+
+                    @if (!string.IsNullOrEmpty(Model.LegalBasis))
+                    {
+                        <div class="govuk-summary-list__row">
+                            <dt class="govuk-summary-list__key">Legal basis</dt>
+                            <dd class="govuk-summary-list__value">@Model.LegalBasis</dd>
+                        </div>
+                    }
+                </dl>
+
+                @if (!string.IsNullOrEmpty(Model.Purpose))
+                {
+                    <h2 class="govuk-heading-l">Purpose</h2>
+                    <div class="govuk-body">
+                        @Html.Raw(Model.Purpose)
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.HowToMeet))
+                {
+                    <h2 class="govuk-heading-l">How to meet this standard</h2>
+                    <div class="govuk-body">
+                        @Html.Raw(Model.HowToMeet)
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.Governance))
+                {
+                    <h2 class="govuk-heading-l">Governance</h2>
+                    <div class="govuk-body">
+                        @Html.Raw(Model.Governance)
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(Model.RelatedGuidance))
+                {
+                    <h2 class="govuk-heading-l">Related guidance</h2>
+                    <div class="govuk-body">
+                        @Html.Raw(Model.RelatedGuidance)
+                    </div>
+                }
+
+                <div class="govuk-inset-text">
+                    <p class="govuk-body">
+                        <strong>To view more details of this standard, view it in <a href="@compassStandardUrl" class="govuk-link" target="_blank" rel="noopener noreferrer">COMPASS</a>.</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+            <div class="govuk-grid-column-two-thirds">
+                <h1 class="govuk-heading-xl">Standard not found</h1>
+                <p class="govuk-body">The standard you are looking for could not be found.</p>
+                <p class="govuk-body">
+                    <a href="@Url.Action("Index", "Standards")" class="govuk-link">Return to standards list</a>
+                </p>
+            </div>
+        </div>
+    </div>
+}
+

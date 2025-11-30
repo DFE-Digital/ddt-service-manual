@@ -37,11 +37,29 @@ body {
 }
 
 /* Hero masthead - Clean GOV.UK blue */
-.page-masthead {
+.page-masthead,
+.dfe-page-header {
     background: #1d70b8;
     color: #ffffff;
-    padding: 0 0 80px;
+    padding: 40px 0 60px;
     position: relative;
+}
+
+.dfe-page-header .govuk-width-container {
+    position: relative;
+}
+
+.dfe-page-header .govuk-heading-xl {
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.dfe-page-header .govuk-body-l {
+    color: #ffffff;
+    font-size: 24px;
+    line-height: 1.5;
+    opacity: 0.95;
+    margin-bottom: 0;
 }
 
 .page-masthead .govuk-width-container {
@@ -1040,7 +1058,7 @@ body {
 
 /* Homepage cards */
 .homepage-hero {
-    background: #f3f2f1;
+    background: #f4f8fb;
     padding: 40px 0 60px 0;
 }
 
