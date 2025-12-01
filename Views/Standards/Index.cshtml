@@ -60,7 +60,7 @@
 
 <div class="govuk-width-container" id="standards-content">
     <div class="govuk-grid-row">
-        <div class="govuk-grid-column-one-third">
+        <div class="govuk-grid-column-one-quarter">
             <div class="moj-filter">
                 <div class="moj-filter__header">
                     <div class="moj-filter__header-title">
@@ -130,7 +130,7 @@
             </div>
         </div>
 
-        <div class="govuk-grid-column-two-thirds">
+        <div class="govuk-grid-column-one-half">
             @if (standards.Any())
             {
                 <div class="govuk-body govuk-!-margin-bottom-4">
@@ -237,6 +237,27 @@
                     }
                 </div>
             }
+        </div>
+
+        <div class="govuk-grid-column-one-quarter" role="complementary">
+            <aside class="govuk-!-margin-top-0">
+                <h2 class="govuk-heading-m">More guidance</h2>
+                <nav aria-label="Related guidance">
+                    <ul class="govuk-list govuk-list--spaced">
+                        <li>
+                            <a href="https://www.gov.uk/guidance/the-technology-code-of-practice" class="govuk-link" target="_blank" rel="noopener noreferrer">
+                                Technology Code of Practice (TCOP) <span class="govuk-visually-hidden">(Link opens in new tab)</span>
+                            </a>
+                        </li>
+                      
+                        <li>
+                            <a href="https://apply-the-service-standard.education.gov.uk/" class="govuk-link" rel="noopener noreferrer">
+                                Apply the Service Standard
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </aside>
         </div>
     </div>
 </div>
