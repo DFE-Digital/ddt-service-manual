@@ -14,7 +14,7 @@
 }
 
 @section Masthead {
-    <div class="homepage-hero">
+    <div class="content-page-hero">
         <div class="govuk-width-container">
             <nav class="govuk-breadcrumbs" aria-label="Breadcrumb" style="margin-bottom: 24px;">
                 <ol class="govuk-breadcrumbs__list">
@@ -142,7 +142,7 @@
                     {
                         <li class="govuk-!-margin-bottom-6 govuk-!-padding-bottom-4" style="border-bottom: 1px solid #b1b4b6;">
                             <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
-                                <a href="@Url.Action("Details", "Standards", new { id = standard.Id })" class="govuk-link">@standard.Title</a>
+                                <a href="@Url.Action("Details", "Standards", new { slug = standard.Slug })" class="govuk-link">@standard.Title</a>
                             </h3>
                             
                             @if (!string.IsNullOrEmpty(standard.Summary))

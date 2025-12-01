@@ -65,22 +65,27 @@
                         <div class="govuk-summary-list__row">
                             <dt class="govuk-summary-list__key">Categories</dt>
                             <dd class="govuk-summary-list__value">
-                                @foreach (var cat in Model.Categories)
+                                @foreach (var category in Model.Categories.OrderBy(c => c.Name))
                                 {
-                                    <span class="govuk-tag govuk-tag--grey govuk-!-margin-right-1">@cat</span>
-                                }
-                            </dd>
-                        </div>
-                    }
-
-                    @if (Model.SubCategories.Any())
-                    {
-                        <div class="govuk-summary-list__row">
-                            <dt class="govuk-summary-list__key">Sub-categories</dt>
-                            <dd class="govuk-summary-list__value">
-                                @foreach (var subCat in Model.SubCategories)
-                                {
-                                    <span class="govuk-tag govuk-tag--grey govuk-!-margin-right-1">@subCat</span>
+                                    <div class="govuk-!-margin-bottom-4 @(category != Model.Categories.Last() ? "govuk-!-padding-bottom-4" : "")" style="@(category != Model.Categories.Last() ? "border-bottom: 1px solid #b1b4b6;" : "")">
+                                        <h3 class="govuk-heading-s govuk-!-margin-bottom-2">
+                                            @category.Name
+                                            @if (!string.IsNullOrEmpty(category.Description))
+                                            {
+                                                <span class="govuk-body-s govuk-!-display-block govuk-!-margin-top-1" style="color: #505a5f;">@category.Description</span>
+                                            }
+                                        </h3>
+                                        
+                                        @if (category.SubCategories.Any())
+                                        {
+                                            <ul class="govuk-list govuk-!-margin-top-2">
+                                                @foreach (var subCategory in category.SubCategories.OrderBy(sc => sc.Name))
+                                                {
+                                                    <li>@subCategory.Name</li>
+                                                }
+                                            </ul>
+                                        }
+                                    </div>
                                 }
                             </dd>
                         </div>
@@ -132,32 +137,32 @@
                 @if (!string.IsNullOrEmpty(Model.Purpose))
                 {
                     <h2 class="govuk-heading-l">Purpose</h2>
-                    <div class="govuk-body">
-                        @Html.Raw(Model.Purpose)
+                    <div>
+                        @Html.Raw(GovUkMarkdownHelper.ToGovUkHtml(Model.Purpose))
                     </div>
                 }
 
                 @if (!string.IsNullOrEmpty(Model.HowToMeet))
                 {
                     <h2 class="govuk-heading-l">How to meet this standard</h2>
-                    <div class="govuk-body">
-                        @Html.Raw(Model.HowToMeet)
+                    <div>
+                        @Html.Raw(GovUkMarkdownHelper.ToGovUkHtml(Model.HowToMeet))
                     </div>
                 }
 
                 @if (!string.IsNullOrEmpty(Model.Governance))
                 {
                     <h2 class="govuk-heading-l">Governance</h2>
-                    <div class="govuk-body">
-                        @Html.Raw(Model.Governance)
+                    <div>
+                        @Html.Raw(GovUkMarkdownHelper.ToGovUkHtml(Model.Governance))
                     </div>
                 }
 
                 @if (!string.IsNullOrEmpty(Model.RelatedGuidance))
                 {
                     <h2 class="govuk-heading-l">Related guidance</h2>
-                    <div class="govuk-body">
-                        @Html.Raw(Model.RelatedGuidance)
+                    <div>
+                        @Html.Raw(GovUkMarkdownHelper.ToGovUkHtml(Model.RelatedGuidance))
                     </div>
                 }
 

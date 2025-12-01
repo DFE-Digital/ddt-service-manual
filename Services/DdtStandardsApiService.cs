@@ -78,6 +78,97 @@ public class DdtStandardsApiService
     }
 
     /// <summary>
+    /// Get a single published standard by Slug (requires bearer token authentication)
+    /// </summary>
+    public async Task<DdtStandardDetailDto?> GetStandardBySlugAsync(string slug)
+    {
+        try
+        {
+            var url = $"/api/v1/DdtStandards/by-slug/{Uri.EscapeDataString(slug)}";
+
+            _logger.LogInformation("Fetching standard with slug {Slug} from {Url}", slug, url);
+
+            var response = await _httpClient.GetAsync(url);
+            
+            // Check if response is successful
+            if (!response.IsSuccessStatusCode)
+            {
+                var errorContent = await response.Content.ReadAsStringAsync();
+                
+                // Try to parse error response if it's JSON
+                try
+                {
+                    if (errorContent.TrimStart().StartsWith("{"))
+                    {
+                        using var errorDoc = JsonDocument.Parse(errorContent);
+                        if (errorDoc.RootElement.TryGetProperty("error", out var errorElement))
+                        {
+                            var errorMessage = errorElement.TryGetProperty("message", out var msg) 
+                                ? msg.GetString() 
+                                : $"Standard with slug {slug} not found";
+                            _logger.LogWarning("API returned status {StatusCode} for standard slug {Slug}: {ErrorMessage}", 
+                                response.StatusCode, slug, errorMessage);
+                        }
+                        else
+                        {
+                            _logger.LogWarning("API returned status {StatusCode} for standard slug {Slug}. Response: {Content}", 
+                                response.StatusCode, slug, errorContent.Substring(0, Math.Min(500, errorContent.Length)));
+                        }
+                    }
+                    else
+                    {
+                        _logger.LogWarning("API returned status {StatusCode} for standard slug {Slug}. Response: {Content}", 
+                            response.StatusCode, slug, errorContent.Substring(0, Math.Min(500, errorContent.Length)));
+                    }
+                }
+                catch
+                {
+                    _logger.LogWarning("API returned status {StatusCode} for standard slug {Slug}. Response: {Content}", 
+                        response.StatusCode, slug, errorContent.Substring(0, Math.Min(500, errorContent.Length)));
+                }
+                
+                return null;
+            }
+
+            // Check content type to ensure it's JSON
+            var contentType = response.Content.Headers.ContentType?.MediaType;
+            if (contentType != null && !contentType.Contains("json"))
+            {
+                var content = await response.Content.ReadAsStringAsync();
+                _logger.LogWarning("API returned non-JSON content type {ContentType} for standard slug {Slug}. Response preview: {Content}", 
+                    contentType, slug, content.Substring(0, Math.Min(500, content.Length)));
+                return null;
+            }
+
+            var json = await response.Content.ReadAsStringAsync();
+            
+            // Check if response looks like JSON (starts with { or [)
+            if (string.IsNullOrWhiteSpace(json) || (!json.TrimStart().StartsWith("{") && !json.TrimStart().StartsWith("[")))
+            {
+                _logger.LogWarning("API returned non-JSON response for standard slug {Slug}. Response preview: {Content}", 
+                    slug, json.Substring(0, Math.Min(500, json.Length)));
+                return null;
+            }
+
+            var result = JsonSerializer.Deserialize<DdtStandardDetailDto>(json, _jsonOptions);
+
+            _logger.LogInformation("Successfully fetched standard with slug {Slug}", slug);
+
+            return result;
+        }
+        catch (JsonException jsonEx)
+        {
+            _logger.LogError(jsonEx, "JSON deserialization error for standard slug {Slug}. Response may not be valid JSON.", slug);
+            return null;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error fetching standard with slug {Slug}", slug);
+            throw;
+        }
+    }
+
+    /// <summary>
     /// Get a single published standard by ID
     /// </summary>
     public async Task<DdtStandardDetailDto?> GetStandardByIdAsync(int id)
@@ -261,6 +352,27 @@ public class DdtStandardPhase
 }
 
 /// <summary>
+/// DTO for a category with its sub-categories
+/// </summary>
+public class DdtStandardCategoryDto
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+    public List<DdtStandardSubCategoryDto> SubCategories { get; set; } = new();
+}
+
+/// <summary>
+/// DTO for a sub-category
+/// </summary>
+public class DdtStandardSubCategoryDto
+{
+    public int Id { get; set; }
+    public string? Name { get; set; }
+    public string? Description { get; set; }
+}
+
+/// <summary>
 /// DTO for a full DDT Standard detail from the API (includes Purpose, HowToMeet, etc.)
 /// </summary>
 public class DdtStandardDetailDto
@@ -291,8 +403,7 @@ public class DdtStandardDetailDto
     public DdtStandardCreator? Creator { get; set; }
     public List<DdtStandardOwner> Owners { get; set; } = new();
     public List<DdtStandardContact> Contacts { get; set; } = new();
-    public List<string> Categories { get; set; } = new();
-    public List<string> SubCategories { get; set; } = new();
+    public List<DdtStandardCategoryDto> Categories { get; set; } = new();
     public List<DdtStandardPhase> Phases { get; set; } = new();
     public DateTime? CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }

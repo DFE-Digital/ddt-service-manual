@@ -71,11 +71,18 @@ public class StandardsController : Controller
     /// <summary>
     /// Display details of a specific standard
     /// </summary>
-    public async Task<IActionResult> Details(int id)
+    [HttpGet("Details/{slug}")]
+    public async Task<IActionResult> Details(string slug)
     {
         try
         {
-            var standard = await _ddtStandardsApiService.GetStandardByIdAsync(id);
+            if (string.IsNullOrWhiteSpace(slug))
+            {
+                ViewBag.ErrorMessage = "Standard slug is required.";
+                return View((DdtStandardDetailDto?)null);
+            }
+
+            var standard = await _ddtStandardsApiService.GetStandardBySlugAsync(slug);
 
             if (standard == null)
             {
@@ -87,13 +94,13 @@ public class StandardsController : Controller
             // Get COMPASS base URL for linking
             var compassBaseUrl = _ddtStandardsApiService.GetCompassBaseUrl();
             ViewBag.CompassBaseUrl = compassBaseUrl;
-            ViewBag.CompassStandardUrl = $"{compassBaseUrl}/DdtStandards/Details/{id}";
+            ViewBag.CompassStandardUrl = $"{compassBaseUrl}/DdtStandards/Details/{standard.Id}";
 
             return View(standard);
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error loading standard {Id}", id);
+            _logger.LogError(ex, "Error loading standard with slug {Slug}", slug);
             ViewBag.ErrorMessage = "An error occurred while loading the standard. Please try again later.";
             return View((DdtStandardDetailDto?)null);
         }

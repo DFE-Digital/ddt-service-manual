@@ -1080,6 +1080,56 @@ body {
     color: var(--text-secondary);
 }
 
+/* Content page hero - for non-homepage pages */
+.content-page-hero {
+    background: #f4f8fb;
+    padding: 40px 0 60px 0;
+}
+
+.content-page-hero h1 {
+    font-size: 56px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.content-page-hero .govuk-body-l {
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+/* Remove top padding when breadcrumbs are present (breadcrumbs sit immediately below service navigation) */
+body.has-breadcrumbs .content-page-hero,
+.content-page-hero:has(.govuk-breadcrumbs) {
+    padding-top: 15px;
+    margin-top: 0;
+}
+
+/* Remove any margin/padding from breadcrumbs container when it's right after service navigation */
+body.has-breadcrumbs > .govuk-width-container:first-of-type {
+    margin-top: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+}
+
+/* Remove margin from breadcrumbs container div that comes after service navigation */
+.govuk-service-navigation + .govuk-width-container {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+/* Ensure breadcrumbs in content-page-hero have no top padding */
+.content-page-hero .govuk-breadcrumbs {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+/* Remove top padding from breadcrumbs when they're immediately after service navigation (in layout) */
+body.has-breadcrumbs .govuk-service-navigation + .govuk-width-container .govuk-breadcrumbs {
+    padding-top: 0;
+}
+
 .homepage-section {
     padding: 60px 0;
 }
@@ -1618,6 +1668,12 @@ body {
 /* Breadcrumbs */
 .govuk-breadcrumbs {
     padding: 24px 0;
+}
+
+/* Remove top padding from breadcrumbs when they're immediately after service navigation */
+body.has-breadcrumbs > .govuk-width-container:first-of-type .govuk-breadcrumbs,
+.govuk-width-container:has(.govuk-breadcrumbs) .govuk-breadcrumbs:first-child {
+    padding-top: 0;
 }
 
 .govuk-breadcrumbs__link {
