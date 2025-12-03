@@ -2,36 +2,78 @@
     Layout = "_Layout";
 }
 
-<div class="govuk-width-container govuk-!-margin-top-9 govuk-!-margin-bottom-9">
+@* Create wrapper sections that pass through to _Layout *@
+@section Breadcrumbs {
     @if (IsSectionDefined("Breadcrumbs"))
     {
-        <nav class="govuk-breadcrumbs" aria-label="Breadcrumbs">
-            <ol class="govuk-breadcrumbs__list">
-                @RenderSection("Breadcrumbs", required: false)
-            </ol>
-        </nav>
+        @await RenderSectionAsync("Breadcrumbs", required: false)
     }
+}
 
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-            @RenderBody()
+@section Masthead {
+    @if (IsSectionDefined("Masthead"))
+    {
+        @await RenderSectionAsync("Masthead", required: false)
+    }
+}
 
-            @if (IsSectionDefined("MostViewed"))
-            {
-                <h2 class="govuk-heading-l govuk-!-margin-top-9">Most viewed</h2>
-                <ul class="govuk-list">
-                    @RenderSection("MostViewed", required: false)
-                </ul>
-            }
+@RenderBody()
 
-            @if (IsSectionDefined("Topics"))
-            {
-                <h2 class="govuk-heading-l govuk-!-margin-top-9">Topics</h2>
-                <div class="topic-list">
+<div class="govuk-width-container">
+    <div class="topic-page-content">
+        <!-- Topics Section - Main standards/topics -->
+        @if (IsSectionDefined("Topics"))
+        {
+            <section class="topic-section">
+                <h2 class="topic-section__heading">Standards</h2>
+                <div class="dfe-topic-list">
                     @RenderSection("Topics", required: false)
                 </div>
-            }
-        </div>
+            </section>
+        }
+
+        <!-- Guidance Section -->
+        @if (IsSectionDefined("Guidance"))
+        {
+            <section class="topic-section">
+                <h2 class="topic-section__heading">Guidance</h2>
+                <div class="dfe-guidance-list">
+                    @RenderSection("Guidance", required: false)
+                </div>
+            </section>
+        }
+
+        <!-- Toolkits & Artefacts Section -->
+        @if (IsSectionDefined("Toolkits"))
+        {
+            <section class="topic-section">
+                <h2 class="topic-section__heading">Toolkits and artefacts</h2>
+                <div class="dfe-toolkit-card__list">
+                    @RenderSection("Toolkits", required: false)
+                </div>
+            </section>
+        }
+
+        <!-- How to Guides Section -->
+        @if (IsSectionDefined("HowToGuides"))
+        {
+            <section class="topic-section">
+                <h2 class="topic-section__heading">How to guides</h2>
+                <div class="dfe-how-to-guides">
+                    @RenderSection("HowToGuides", required: false)
+                </div>
+            </section>
+        }
+
+        <!-- Related Content Section -->
+        @if (IsSectionDefined("RelatedContent"))
+        {
+            <section class="topic-section">
+                <h2 class="topic-section__heading">Related content</h2>
+                <div class="dfe-related-content">
+                    @RenderSection("RelatedContent", required: false)
+                </div>
+            </section>
+        }
     </div>
 </div>
-

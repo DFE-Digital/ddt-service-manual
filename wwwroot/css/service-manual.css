@@ -41,13 +41,34 @@ body {
     background-color: var(--bg-main);
 }
 
-/* Hero masthead - Clean GOV.UK blue */
+/* Standard detail pages - 40px top margin */
+.govuk-main-wrapper.standard-detail-page {
+    padding-top: 40px;
+}
+
+/* Hero masthead - Darker GOV.UK blue */
 .page-masthead,
 .dfe-page-header {
-    background: #1d70b8;
+    background: #003078;
     color: #ffffff;
     padding: 40px 0 60px;
     position: relative;
+}
+
+/* Topic page masthead - Light blue */
+.page-masthead--topic-page {
+    background: #d2e2f1;
+    color: var(--text-primary);
+    padding: 40px 0 60px;
+    margin-top: 0 !important;
+}
+
+.page-masthead--topic-page .govuk-heading-xl {
+    color: var(--text-primary);
+}
+
+.page-masthead--topic-page .govuk-body-l {
+    color: var(--text-primary);
 }
 
 .dfe-page-header .govuk-width-container {
@@ -1063,8 +1084,9 @@ body {
 
 /* Homepage cards */
 .homepage-hero {
-    background: #f4f8fb;
+    background: #1d70b8;
     padding: 40px 0 60px 0;
+    color: #ffffff;
 }
 
 .homepage-hero h1 {
@@ -1072,63 +1094,64 @@ body {
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 24px;
+    color: #ffffff;
 }
 
 .homepage-hero .govuk-body-l {
     font-size: 24px;
     line-height: 1.5;
-    color: var(--text-secondary);
+    color: #ffffff;
+    opacity: 0.95;
 }
 
 /* Content page hero - for non-homepage pages */
 .content-page-hero {
     background: #f4f8fb;
     padding: 40px 0 60px 0;
+    margin-top: 0 !important;
 }
 
-.content-page-hero h1 {
-    font-size: 56px;
-    font-weight: 700;
-    line-height: 1.2;
-    margin-bottom: 24px;
+/* Remove gaps between service nav, breadcrumbs and content page hero */
+body.has-breadcrumbs .govuk-service-navigation:has(+ .breadcrumbs-wrapper--content-page) {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
 }
 
-.content-page-hero .govuk-body-l {
-    font-size: 24px;
-    line-height: 1.5;
-    color: var(--text-secondary);
+.govuk-service-navigation + .breadcrumbs-wrapper--content-page {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
 }
 
-/* Remove top padding when breadcrumbs are present (breadcrumbs sit immediately below service navigation) */
+.breadcrumbs-wrapper--content-page {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.breadcrumbs-wrapper--content-page + .content-page-hero {
+    margin-top: 0 !important;
+    padding-top: 40px !important;
+}
+
+
+
+/* Content page hero with breadcrumbs */
 body.has-breadcrumbs .content-page-hero,
 .content-page-hero:has(.govuk-breadcrumbs) {
-    padding-top: 15px;
     margin-top: 0;
 }
 
-/* Remove any margin/padding from breadcrumbs container when it's right after service navigation */
-body.has-breadcrumbs > .govuk-width-container:first-of-type {
-    margin-top: 0;
-    padding-top: 0;
-    margin-bottom: 0;
-}
+/* Breadcrumb containers use GOV.UK frontend default spacing */
 
-/* Remove margin from breadcrumbs container div that comes after service navigation */
-.govuk-service-navigation + .govuk-width-container {
-    margin-top: 0;
-    padding-top: 0;
-}
 
-/* Ensure breadcrumbs in content-page-hero have no top padding */
-.content-page-hero .govuk-breadcrumbs {
-    padding-top: 0;
-    margin-top: 0;
-}
 
-/* Remove top padding from breadcrumbs when they're immediately after service navigation (in layout) */
-body.has-breadcrumbs .govuk-service-navigation + .govuk-width-container .govuk-breadcrumbs {
-    padding-top: 0;
-}
+.govuk-breadcrumbs 
+{margin: 0px; 
+    padding: 15px 0;}
+
+
+
+/* Content page hero breadcrumbs use GOV.UK frontend default spacing */
+
 
 .homepage-section {
     padding: 60px 0;
@@ -1263,8 +1286,22 @@ body.has-breadcrumbs .govuk-service-navigation + .govuk-width-container .govuk-b
 }
 
 /* Topic page styling */
-.topic-list {
-    margin-top: 32px;
+.govuk-list > li {
+    margin-bottom: 24px;
+}
+
+.govuk-list > li:last-child {
+    margin-bottom: 0;
+}
+
+.govuk-list > li > h3 {
+    margin-bottom: 4px;
+    margin-top: 0;
+}
+
+.govuk-list > li > p {
+    margin-bottom: 0;
+    margin-top: 0;
 }
 
 .topic-item {
@@ -1665,15 +1702,65 @@ body.has-breadcrumbs .govuk-service-navigation + .govuk-width-container .govuk-b
     margin-bottom: 16px;
 }
 
-/* Breadcrumbs */
-.govuk-breadcrumbs {
-    padding: 24px 0;
+/* Breadcrumbs - Use GOV.UK frontend default spacing, no overrides */
+
+/* Topic page breadcrumbs - Full width light blue background */
+.breadcrumbs-wrapper--topic-page {
+    background: #d2e2f1;
+    margin: 0 !important;
+    padding: 0px;
+    width: 100%;
+    display: block;
 }
 
-/* Remove top padding from breadcrumbs when they're immediately after service navigation */
-body.has-breadcrumbs > .govuk-width-container:first-of-type .govuk-breadcrumbs,
-.govuk-width-container:has(.govuk-breadcrumbs) .govuk-breadcrumbs:first-child {
-    padding-top: 0;
+.breadcrumbs-wrapper--topic-page .govuk-width-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Content page breadcrumbs - Full width lighter blue background */
+.breadcrumbs-wrapper--content-page {
+    background: #f4f8fb;
+    margin: 0 !important;
+    padding: 0px;
+    width: 100%;
+    display: block;
+}
+
+.breadcrumbs-wrapper--content-page .govuk-width-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Topic page breadcrumbs use GOV.UK frontend default spacing */
+
+/* Remove all gaps between service nav, breadcrumbs and masthead on topic pages */
+.govuk-service-navigation:has(+ .breadcrumbs-wrapper--topic-page) {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.govuk-service-navigation + .breadcrumbs-wrapper--topic-page {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.breadcrumbs-wrapper--topic-page {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.breadcrumbs-wrapper--topic-page + .page-masthead--topic-page {
+    margin-top: 0 !important;
+    padding-top: 40px !important;
+}
+
+.page-masthead--topic-page {
+    margin-top: 0 !important;
 }
 
 .govuk-breadcrumbs__link {
@@ -1911,9 +1998,6 @@ a:focus-visible {
     }
 }
 
-.govuk-breadcrumbs{
-    padding-top: 0;
-}
 
 /* CTA Section - Eye-catching call to action */
 .dfe-cta-section {
@@ -1979,4 +2063,453 @@ a:focus-visible {
     .dfe-cta-section__text {
         font-size: 16px;
     }
+}
+
+/* Action Link component - GOV.UK style chevron links */
+.dfe-action-link {
+    position: relative;
+    display: block;
+    padding-left: 35px;
+}
+
+.dfe-action-link__icon {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 27px;
+    height: 27px;
+}
+
+.dfe-action-link__svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.dfe-action-link__icon__circle {
+    fill: var(--govuk-blue);
+}
+
+.dfe-action-link__icon__arrow {
+    fill: #ffffff;
+}
+
+.dfe-action-link__link-wrapper {
+    display: block;
+}
+
+.dfe-action-link__link {
+    text-decoration: none;
+    color: var(--govuk-blue);
+    font-size: 19px;
+    font-weight: 400;
+}
+
+.dfe-action-link__link:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    color: var(--govuk-blue-dark);
+}
+
+.dfe-action-link:hover .dfe-action-link__icon__circle {
+    fill: var(--govuk-blue-dark);
+}
+
+.dfe-action-link__link:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 0;
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.dfe-action-link:focus-within .dfe-action-link__icon__circle {
+    fill: var(--text-primary);
+}
+
+@media (max-width: 40.0625em) {
+    .dfe-action-link__link {
+        font-size: 16px;
+    }
+}
+
+/* Topic Page Content Container */
+.topic-page-content {
+    padding-top: 60px;
+}
+
+/* Topic Section - Consistent spacing between sections */
+.topic-section {
+    margin-bottom: 96px;
+}
+
+.topic-section:last-child {
+    margin-bottom: 0;
+}
+
+.topic-section__heading {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 0 0 48px 0;
+    color: var(--text-primary);
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+}
+
+/* Topic Links - Clean list-based design with generous spacing */
+.dfe-topic-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: 800px;
+}
+
+.dfe-topic-link {
+    padding: 40px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.dfe-topic-link:first-child {
+    padding-top: 0;
+}
+
+.dfe-topic-link:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dfe-topic-link__link {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+}
+
+.dfe-topic-link__link:hover {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.dfe-topic-link__link:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.dfe-topic-link__description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+/* Guidance Links - Clean list-based design with generous spacing */
+.dfe-guidance-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: 800px;
+}
+
+.dfe-guidance-link {
+    padding: 40px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.dfe-guidance-link:first-child {
+    padding-top: 0;
+}
+
+.dfe-guidance-link:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dfe-guidance-link__link {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--govuk-blue);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+    transition: color 0.2s ease;
+}
+
+.dfe-guidance-link__link:hover {
+    color: var(--govuk-blue-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.dfe-guidance-link__link:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.dfe-guidance-link__description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 0;
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+/* Toolkit Cards - Modern, clean card design inspired by presentation slides */
+.dfe-toolkit-card__list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 32px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dfe-toolkit-card {
+    background: #ffffff;
+    border: 1px solid #e8e8e8;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    min-height: 240px;
+    transition: all 0.2s ease;
+}
+
+.dfe-toolkit-card:hover {
+    border-color: var(--govuk-blue);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.dfe-toolkit-card__link {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    flex-grow: 1;
+}
+
+.dfe-toolkit-card__link:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+}
+
+.dfe-toolkit-card__title {
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0 0 16px 0;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.dfe-toolkit-card__link:hover .dfe-toolkit-card__title {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.dfe-toolkit-card__description {
+    font-size: 17px;
+    color: var(--text-secondary);
+    margin: 0 0 auto 0;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.dfe-toolkit-card__meta {
+    font-size: 15px;
+    color: var(--text-tertiary);
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid #e8e8e8;
+    font-weight: 500;
+}
+
+/* How to Guides - Clean list-based design (not cards) */
+.dfe-how-to-guides {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: 800px;
+}
+
+.dfe-how-to-card {
+    padding: 40px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.dfe-how-to-card:first-child {
+    padding-top: 0;
+}
+
+.dfe-how-to-card:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dfe-how-to-card__link {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+    line-height: 1.3;
+    transition: color 0.2s ease;
+}
+
+.dfe-how-to-card__link:hover {
+    color: var(--govuk-blue);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+.dfe-how-to-card__link:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+    background-color: #ffdd00;
+    color: var(--text-primary);
+    text-decoration: none;
+}
+
+.dfe-how-to-card__description {
+    font-size: 18px;
+    color: var(--text-secondary);
+    margin: 0 0 0 0;
+    line-height: 1.6;
+    max-width: 700px;
+}
+
+.dfe-how-to-card__duration {
+    font-size: 15px;
+    color: var(--text-tertiary);
+    margin-top: 16px;
+    font-weight: 500;
+}
+
+/* Related Content - Clean list-based design */
+.dfe-related-content {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    max-width: 800px;
+}
+
+.dfe-related-content__item {
+    padding: 16px 0;
+    border-bottom: 1px solid #e8e8e8;
+}
+
+.dfe-related-content__item:first-child {
+    padding-top: 0;
+}
+
+.dfe-related-content__item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.dfe-related-content__link {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--govuk-blue);
+    text-decoration: none;
+    display: block;
+    line-height: 1.4;
+    transition: color 0.2s ease;
+}
+
+.dfe-related-content__link:focus {
+    outline: 3px solid #ffdd00;
+    outline-offset: 2px;
+    background-color: #ffdd00;
+    color: var(--text-primary);
+}
+
+.dfe-related-content__link:hover {
+    color: var(--govuk-blue-dark);
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+}
+
+/* Responsive adjustments for topic page */
+@media (max-width: 48.0625em) {
+    .topic-page-content {
+        padding-top: 40px;
+    }
+
+    .topic-section {
+        margin-bottom: 64px;
+    }
+
+    .topic-section__heading {
+        font-size: 28px;
+        margin-bottom: 32px;
+    }
+
+    .dfe-toolkit-card__list {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    
+    .dfe-toolkit-card {
+        padding: 32px;
+        min-height: auto;
+    }
+
+    .dfe-topic-link,
+    .dfe-guidance-link,
+    .dfe-how-to-card {
+        padding: 32px 0;
+    }
+    
+    .dfe-related-content__item {
+        padding: 12px 0;
+    }
+
+    .dfe-topic-link__link,
+    .dfe-guidance-link__link,
+    .dfe-how-to-card__link,
+    .dfe-related-content__link {
+        font-size: 20px;
+    }
+
+    .dfe-topic-link__description,
+    .dfe-guidance-link__description,
+    .dfe-how-to-card__description {
+        font-size: 17px;
+    }
+}
+
+@media (min-width: 48.0625em) and (max-width: 64.0625em) {
+    .dfe-toolkit-card__list {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+    }
+
+    .topic-section__heading {
+        font-size: 32px;
+    }
+}
+
+/* Remove transition effects from topnav */
+.govuk-header,
+.govuk-header *,
+.govuk-header__link,
+.govuk-header__logotype,
+.govuk-service-navigation,
+.govuk-service-navigation *,
+.govuk-service-navigation__link {
+    transition: none !important;
+    animation: none !important;
 }

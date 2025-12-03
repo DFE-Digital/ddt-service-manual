@@ -1,109 +1,45 @@
 using Microsoft.AspNetCore.Mvc;
-using ServiceManual.Services;
 
 namespace ServiceManual.Controllers;
 
+/// <summary>
+/// Controller for the Standards hub page that provides an overview of all standards
+/// </summary>
 public class StandardsController : Controller
 {
-    private readonly DdtStandardsApiService _ddtStandardsApiService;
-    private readonly ILogger<StandardsController> _logger;
-
-    public StandardsController(
-        DdtStandardsApiService ddtStandardsApiService,
-        ILogger<StandardsController> logger)
+    /// <summary>
+    /// Display the Standards hub page with links to different types of standards
+    /// </summary>
+    public IActionResult Index()
     {
-        _ddtStandardsApiService = ddtStandardsApiService;
-        _logger = logger;
+        return View();
     }
 
     /// <summary>
-    /// Display all published standards
+    /// Display the Standards lifecycle guidance page
     /// </summary>
-    public async Task<IActionResult> Index(string? search, string? category, int page = 1)
+    [Route("standards/standards-lifecycle")]
+    public IActionResult StandardsLifecycle()
     {
-        try
-        {
-            var response = await _ddtStandardsApiService.GetPublishedStandardsAsync(
-                search: search,
-                category: category,
-                page: page,
-                pageSize: 50);
-
-            if (response == null)
-            {
-                ViewBag.ErrorMessage = "Unable to load standards at this time.";
-                return View(new DdtStandardsResponse { Data = new List<DdtStandardDto>() });
-            }
-
-            ViewBag.Search = search;
-            ViewBag.Category = category;
-            ViewBag.CurrentPage = page;
-            ViewBag.TotalPages = response.Pagination?.TotalPages ?? 1;
-            ViewBag.TotalRecords = response.Pagination?.TotalRecords ?? 0;
-
-            // Extract unique categories from all standards
-            var allCategories = response.Data
-                .SelectMany(s => s.Categories)
-                .Where(c => !string.IsNullOrWhiteSpace(c))
-                .Distinct()
-                .OrderBy(c => c)
-                .ToList();
-
-            ViewBag.Categories = allCategories;
-
-            // Sort standards alphabetically by title
-            response.Data = response.Data.OrderBy(s => s.Title).ToList();
-
-            // Get COMPASS base URL for linking
-            var compassBaseUrl = _ddtStandardsApiService.GetCompassBaseUrl();
-            ViewBag.CompassBaseUrl = compassBaseUrl;
-
-            return View(response);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error loading standards");
-            ViewBag.ErrorMessage = "An error occurred while loading standards. Please try again later.";
-            return View(new DdtStandardsResponse { Data = new List<DdtStandardDto>() });
-        }
+        return View();
     }
 
     /// <summary>
-    /// Display details of a specific standard
+    /// Display the Create and publish a standard guidance page
     /// </summary>
-    [HttpGet("Details/{slug}")]
-    public async Task<IActionResult> Details(string slug)
+    [Route("standards/create-publish-standards")]
+    public IActionResult CreatePublishStandards()
     {
-        try
-        {
-            if (string.IsNullOrWhiteSpace(slug))
-            {
-                ViewBag.ErrorMessage = "Standard slug is required.";
-                return View((DdtStandardDetailDto?)null);
-            }
+        return View();
+    }
 
-            var standard = await _ddtStandardsApiService.GetStandardBySlugAsync(slug);
-
-            if (standard == null)
-            {
-                ViewBag.ErrorMessage = "Standard not found. The standard may not exist or may not be published.";
-                // Return view with null model so error message is displayed
-                return View((DdtStandardDetailDto?)null);
-            }
-
-            // Get COMPASS base URL for linking
-            var compassBaseUrl = _ddtStandardsApiService.GetCompassBaseUrl();
-            ViewBag.CompassBaseUrl = compassBaseUrl;
-            ViewBag.CompassStandardUrl = $"{compassBaseUrl}/DdtStandards/Details/{standard.Id}";
-
-            return View(standard);
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "Error loading standard with slug {Slug}", slug);
-            ViewBag.ErrorMessage = "An error occurred while loading the standard. Please try again later.";
-            return View((DdtStandardDetailDto?)null);
-        }
+    /// <summary>
+    /// Display the Standards compliance and assurance guidance page
+    /// </summary>
+    [Route("standards/compliance-assurance")]
+    public IActionResult ComplianceAssurance()
+    {
+        return View();
     }
 }
 

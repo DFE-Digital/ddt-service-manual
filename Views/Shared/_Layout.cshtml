@@ -29,6 +29,25 @@
 
   @if (IsSectionDefined("Breadcrumbs"))
   {
+    @if (IsSectionDefined("Masthead"))
+    {
+      // Check if it's a topic page - either explicitly set or detect by controller/view
+      var breadcrumbWrapperType = ViewBag.BreadcrumbWrapperType as string;
+      var isTopicPage = breadcrumbWrapperType == "topic" || 
+                        (breadcrumbWrapperType == null && ViewContext.RouteData.Values["controller"]?.ToString() == "Standards" && ViewContext.RouteData.Values["action"]?.ToString() == "Index");
+      var wrapperClass = isTopicPage ? "breadcrumbs-wrapper--topic-page" : "breadcrumbs-wrapper--content-page";
+      <div class="breadcrumbs-wrapper @wrapperClass">
+        <div class="govuk-width-container">
+          <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
+            <ol class="govuk-breadcrumbs__list">
+              @RenderSection("Breadcrumbs", required: false)
+            </ol>
+          </nav>
+        </div>
+      </div>
+    }
+    else
+    {
     <div class="govuk-width-container">
       <nav class="govuk-breadcrumbs" aria-label="Breadcrumb">
         <ol class="govuk-breadcrumbs__list">
@@ -36,11 +55,12 @@
         </ol>
       </nav>
     </div>
+    }
   }
 
   @RenderSection("Masthead", required: false)
 
-  <main class="govuk-main-wrapper" id="main-content" role="main">
+  <main class="govuk-main-wrapper @(ViewBag.IsStandardDetailPage == true ? "standard-detail-page" : "")" id="main-content" role="main">
     @if (IsSectionDefined("Masthead"))
     {
       <div class="content-wrapper">

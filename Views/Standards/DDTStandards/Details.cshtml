@@ -3,6 +3,7 @@
 
 @{
     ViewData["Title"] = Model?.Title ?? "Standard Details";
+    ViewBag.IsStandardDetailPage = true;
     var compassStandardUrl = ViewBag.CompassStandardUrl as string ?? "";
     var errorMessage = ViewBag.ErrorMessage as string;
 }
@@ -13,6 +14,9 @@
     </li>
     <li class="govuk-breadcrumbs__list-item">
         <a class="govuk-breadcrumbs__link" href="@Url.Action("Index", "Standards")">Standards</a>
+    </li>
+    <li class="govuk-breadcrumbs__list-item">
+        <a class="govuk-breadcrumbs__link" href="@Url.Action("Index", "DDTStandards")">DDT Standards</a>
     </li>
     <li class="govuk-breadcrumbs__list-item" aria-current="page">@(Model?.Title ?? "Standard")</li>
 }
@@ -183,10 +187,11 @@ else
                 <h1 class="govuk-heading-xl">Standard not found</h1>
                 <p class="govuk-body">The standard you are looking for could not be found.</p>
                 <p class="govuk-body">
-                    <a href="@Url.Action("Index", "Standards")" class="govuk-link">Return to standards list</a>
+                    <a href="@Url.Action("Index", "DDTStandards")" class="govuk-link">Return to DDT standards list</a>
                 </p>
             </div>
         </div>
     </div>
 }
+
 
